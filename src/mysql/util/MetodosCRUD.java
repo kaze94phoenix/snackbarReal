@@ -141,7 +141,7 @@ public class MetodosCRUD {
         session.close();
     }
     
-    public void actualizaMesas(){
+    public void actualizaMesas(){ //Actualizar mesas ocupadas ou nao ocupadas consoante os pedidos pagos ou nao
         SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
         Session session = sessionFactory.openSession();
         session.beginTransaction();
