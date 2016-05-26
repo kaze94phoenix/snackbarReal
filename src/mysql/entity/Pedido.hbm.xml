@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated May 24, 2016 4:04:14 PM by Hibernate Tools 3.6.0 -->
+<hibernate-mapping>
+    <class name="mysql.entity.Pedido" table="pedido" catalog="snackbar">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="balconista" class="mysql.entity.Balconista" fetch="select">
+            <column name="balconista_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="mesa" class="mysql.entity.Mesa" fetch="select">
+            <column name="mesa_id" not-null="true" />
+        </many-to-one>
+        <property name="pago" type="boolean">
+            <column name="pago" not-null="true" />
+        </property>
+        <property name="data" type="timestamp">
+            <column name="data" length="19" not-null="true" />
+        </property>
+        <set name="itemPedidos" table="item_pedido" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="pedido_id" not-null="true" />
+            </key>
+            <one-to-many class="mysql.entity.ItemPedido" />
+        </set>
+    </class>
+</hibernate-mapping>
