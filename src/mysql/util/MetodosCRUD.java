@@ -141,5 +141,26 @@ public class MetodosCRUD {
         session.close();
     }
     
+    public void actualizaMesas(){
+        SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
+        Session session = sessionFactory.openSession();
+        session.beginTransaction();
+        for(Pedido p: listas.listaPedidos())
+            for(Mesa m:listas.listaMesas())
+            if(p.getMesa().getId()==m.getId()){
+                if(p.isPago()){
+                Mesa mesa = (Mesa) session.get(Mesa.class, m.getId());
+                mesa.setMesalivre(true);
+                session.update(mesa);
+                } else {
+                Mesa mesa = (Mesa) session.get(Mesa.class, m.getId());
+                mesa.setMesalivre(false);
+                session.update(mesa);
+            }
+            }
+        session.getTransaction().commit();
+        session.close();
+    }
+    
     
 }

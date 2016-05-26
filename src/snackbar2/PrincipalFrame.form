@@ -293,6 +293,9 @@
                       <Connection code="new javax.swing.DefaultComboBoxModel(listas.vectorMesasOcupadas())" type="code"/>
                     </Property>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mesaOcupadaCBActionPerformed"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JButton" name="desfazerBT">
                   <Properties>
@@ -306,6 +309,9 @@
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Confirmar"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="confirmarMOBTActionPerformed"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>
@@ -523,7 +529,7 @@
                 <Component class="javax.swing.JComboBox" name="mesasPagamentoCB">
                   <Properties>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                      <Connection code="new javax.swing.DefaultComboBoxModel(listas.vectorMesasLivres())" type="code"/>
+                      <Connection code="new javax.swing.DefaultComboBoxModel(listas.vectorMesasOcupadas())" type="code"/>
                     </Property>
                   </Properties>
                   <Events>

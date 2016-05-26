@@ -182,6 +182,11 @@ public class PrincipalFrame extends javax.swing.JFrame {
         jLabel7.setText("Mesas Ocupadas");
 
         mesaOcupadaCB.setModel(new javax.swing.DefaultComboBoxModel(listas.vectorMesasOcupadas()));
+        mesaOcupadaCB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mesaOcupadaCBActionPerformed(evt);
+            }
+        });
 
         desfazerBT.setText("Desfazer");
         desfazerBT.addActionListener(new java.awt.event.ActionListener() {
@@ -191,6 +196,11 @@ public class PrincipalFrame extends javax.swing.JFrame {
         });
 
         confirmarMOBT.setText("Confirmar");
+        confirmarMOBT.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                confirmarMOBTActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
@@ -325,7 +335,7 @@ public class PrincipalFrame extends javax.swing.JFrame {
         itensPagamentoTB.setModel(mcrud.itensMesa(listas.listaMesas().get(0)));
         jScrollPane3.setViewportView(itensPagamentoTB);
 
-        mesasPagamentoCB.setModel(new javax.swing.DefaultComboBoxModel(listas.vectorMesasLivres()));
+        mesasPagamentoCB.setModel(new javax.swing.DefaultComboBoxModel(listas.vectorMesasOcupadas()));
         mesasPagamentoCB.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 mesasPagamentoCBActionPerformed(evt);
@@ -475,6 +485,8 @@ public class PrincipalFrame extends javax.swing.JFrame {
         for(ItemPedido iP: itensPedidos){
         iP.setPedido(listas.listaPedidos().get(listas.listaPedidos().size()-1)); //Adicionar itens ao ultimo pedido gravado
         mcrud.salvarItemPedido(iP); //Gravar itens de um pedido
+        mcrud.actualizaMesas();
+        mesasPagamentoCB.setModel(new DefaultComboBoxModel(listas.vectorMesasOcupadas()));
         mesaLivreCB.setModel(new DefaultComboBoxModel(listas.vectorMesasLivres()));
         mesaOcupadaCB.setModel(new DefaultComboBoxModel(listas.vectorMesasOcupadas()));
         }
@@ -504,6 +516,10 @@ public class PrincipalFrame extends javax.swing.JFrame {
          trocosTF.setText(String.valueOf(valorPagar-mcrud.total)); //Trocos do valor entregue pra effectuar o pagamento
          mcrud.pagarPedido((Mesa) mesasPagamentoCB.getSelectedItem()); //Metodo para confirmar o pagamento dos pedidos de uma mesa
          itensPagamentoTB.setModel(mcrud.itensMesa((Mesa) mesasPagamentoCB.getSelectedItem())); //Actualizar a lista de pedidos numa mesa
+        mcrud.actualizaMesas();
+        mesasPagamentoCB.setModel(new DefaultComboBoxModel(listas.vectorMesasOcupadas()));
+        mesaLivreCB.setModel(new DefaultComboBoxModel(listas.vectorMesasLivres()));
+        mesaOcupadaCB.setModel(new DefaultComboBoxModel(listas.vectorMesasOcupadas()));
          }
         }catch(Exception e){
             JOptionPane.showMessageDialog(rootPane, e.getMessage());
@@ -539,6 +555,31 @@ public class PrincipalFrame extends javax.swing.JFrame {
     private void itemsCBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemsCBActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_itemsCBActionPerformed
+
+    private void confirmarMOBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmarMOBTActionPerformed
+        // TODO add your handling code here:
+        try{
+            
+        System.out.println(itensPedidos); //Teste
+        Mesa mesa = (Mesa) mesaOcupadaCB.getSelectedItem();
+        mesa.setMesalivre(false); // ?? Necessita de funcao para actualizar mesas livres e ocupadas, na funcao de salvar pedido
+        mcrud.salvarPedido(user, mesa, new Date()); //Criar Pedido
+        for(ItemPedido iP: itensPedidos){
+        iP.setPedido(listas.listaPedidos().get(listas.listaPedidos().size()-1)); //Adicionar itens ao ultimo pedido gravado
+        mcrud.salvarItemPedido(iP); //Gravar itens de um pedido
+        mcrud.actualizaMesas();
+        mesasPagamentoCB.setModel(new DefaultComboBoxModel(listas.vectorMesasOcupadas()));
+        mesaLivreCB.setModel(new DefaultComboBoxModel(listas.vectorMesasLivres()));
+        mesaOcupadaCB.setModel(new DefaultComboBoxModel(listas.vectorMesasOcupadas()));
+        }
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null,e.getMessage());
+        }
+    }//GEN-LAST:event_confirmarMOBTActionPerformed
+
+    private void mesaOcupadaCBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mesaOcupadaCBActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_mesaOcupadaCBActionPerformed
 
     /**
      * @param args the command line arguments
