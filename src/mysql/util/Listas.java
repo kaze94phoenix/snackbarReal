@@ -199,7 +199,7 @@ public class Listas {
         ArrayList<ItemPedido> pedidos = listaItensPedidos();
         
         for(ItemPedido p:pedidos)
-            if(p.getPedido().isPago() && p.getItem().getId()==3){
+            if(p.getPedido().isPago() && p.getItem().getTipoitem().getId()==3){
             cal1.setTime(p.getPedido().getData());
             cal2.setTime(days[diaSemana]);
             if(cal1.get(Calendar.YEAR) == cal2.get(Calendar.YEAR) && cal1.get(Calendar.DAY_OF_YEAR) == cal2.get(Calendar.DAY_OF_YEAR))
@@ -222,7 +222,7 @@ public class Listas {
         ArrayList<ItemPedido> pedidos = listaItensPedidos();
         
         for(ItemPedido p:pedidos)
-            if(p.getPedido().isPago() && p.getItem().getId()!=3){
+            if(p.getPedido().isPago() && p.getItem().getTipoitem().getId()!=3){
             cal1.setTime(p.getPedido().getData());
             cal2.setTime(days[diaSemana]);
             if(cal1.get(Calendar.YEAR) == cal2.get(Calendar.YEAR) && cal1.get(Calendar.DAY_OF_YEAR) == cal2.get(Calendar.DAY_OF_YEAR))
@@ -268,7 +268,7 @@ public class Listas {
         ArrayList<ItemPedido> pedidos = listaItensPedidos();
         
         for(ItemPedido p:pedidos)
-            if(p.getPedido().isPago() && p.getItem().getId()==3){
+            if(p.getPedido().isPago() && p.getItem().getTipoitem().getId()==3){
             cal1.setTime(p.getPedido().getData());
             cal2.setTime(days[diaMes]);
             if(cal1.get(Calendar.YEAR) == cal2.get(Calendar.YEAR) && cal1.get(Calendar.DAY_OF_YEAR) == cal2.get(Calendar.DAY_OF_YEAR))
@@ -291,7 +291,7 @@ public class Listas {
         ArrayList<ItemPedido> pedidos = listaItensPedidos();
         
         for(ItemPedido p:pedidos)
-            if(p.getPedido().isPago() && p.getItem().getId()!=3){
+            if(p.getPedido().isPago() && p.getItem().getTipoitem().getId()!=3){
             cal1.setTime(p.getPedido().getData());
             cal2.setTime(days[diaMes]);
             if(cal1.get(Calendar.YEAR) == cal2.get(Calendar.YEAR) && cal1.get(Calendar.DAY_OF_YEAR) == cal2.get(Calendar.DAY_OF_YEAR))
