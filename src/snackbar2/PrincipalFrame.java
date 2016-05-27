@@ -477,7 +477,9 @@ public class PrincipalFrame extends javax.swing.JFrame {
     private void confirmarMLBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmarMLBTActionPerformed
         // TODO add your handling code here:
         try{
-            
+         if(itensPedidos.isEmpty()){
+             JOptionPane.showMessageDialog(rootPane, "Nao tens itens na lista");
+         }else{   
         System.out.println(itensPedidos); //Teste
         Mesa mesa = (Mesa) mesaLivreCB.getSelectedItem();
         mesa.setMesalivre(false); // ?? Necessita de funcao para actualizar mesas livres e ocupadas, na funcao de salvar pedido
@@ -490,7 +492,9 @@ public class PrincipalFrame extends javax.swing.JFrame {
         mesaLivreCB.setModel(new DefaultComboBoxModel(listas.vectorMesasLivres()));
         mesaOcupadaCB.setModel(new DefaultComboBoxModel(listas.vectorMesasOcupadas()));
         itensPedidos.clear();
+        pedidosTB.setModel(listaPedidos());
         }
+         }
         }catch(Exception e){
             JOptionPane.showMessageDialog(null,e.getMessage());
         }
@@ -549,8 +553,12 @@ public class PrincipalFrame extends javax.swing.JFrame {
     private void desfazerBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_desfazerBTActionPerformed
         // TODO add your handling code here:
         //Desfazer a ultima lista de de itens a um pedido
+        try{
         itensPedidos.remove(itensPedidos.size()-1);
         pedidosTB.setModel(listaPedidos());
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(rootPane, e.getMessage());
+        }
     }//GEN-LAST:event_desfazerBTActionPerformed
 
     private void itemsCBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemsCBActionPerformed
@@ -560,7 +568,9 @@ public class PrincipalFrame extends javax.swing.JFrame {
     private void confirmarMOBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmarMOBTActionPerformed
         // TODO add your handling code here:
         try{
-            
+        if(itensPedidos.isEmpty()){
+            JOptionPane.showMessageDialog(rootPane, "Nao tens itens na lista");
+        }else{    
         System.out.println(itensPedidos); //Teste
         Mesa mesa = (Mesa) mesaOcupadaCB.getSelectedItem();
         mesa.setMesalivre(false); // ?? Necessita de funcao para actualizar mesas livres e ocupadas, na funcao de salvar pedido
@@ -573,6 +583,8 @@ public class PrincipalFrame extends javax.swing.JFrame {
         mesaLivreCB.setModel(new DefaultComboBoxModel(listas.vectorMesasLivres()));
         mesaOcupadaCB.setModel(new DefaultComboBoxModel(listas.vectorMesasOcupadas()));
         itensPedidos.clear();
+        pedidosTB.setModel(listaPedidos());
+        }
         }
         }catch(Exception e){
             JOptionPane.showMessageDialog(null,e.getMessage());
