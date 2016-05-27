@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 26-Maio-2016 às 12:44
+-- Generation Time: 27-Maio-2016 às 13:53
 -- Versão do servidor: 5.6.17
 -- PHP Version: 5.5.12
 
@@ -94,7 +94,7 @@ CREATE TABLE IF NOT EXISTS `item_pedido` (
   PRIMARY KEY (`id`),
   KEY `item_id` (`item_id`,`pedido_id`),
   KEY `pedido_id` (`pedido_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=17 ;
 
 --
 -- Extraindo dados da tabela `item_pedido`
@@ -106,7 +106,28 @@ INSERT INTO `item_pedido` (`id`, `item_id`, `qtd`, `pedido_id`, `data`) VALUES
 (5, 1, 5, 5, '2016-05-24 21:09:37'),
 (6, 1, 5, 6, '2016-05-26 11:34:10'),
 (7, 1, 4, 6, '2016-05-26 11:34:16'),
-(8, 1, 66, 6, '2016-05-26 11:34:20');
+(8, 1, 66, 6, '2016-05-26 11:34:20'),
+(11, 1, 8, 8, '2016-05-26 19:07:07'),
+(12, 1, 7, 9, '2016-05-26 19:08:10'),
+(13, 1, 7, 10, '2016-05-26 19:11:03'),
+(14, 4, 3, 11, '2016-05-26 19:21:07'),
+(15, 1, 4, 14, '2016-05-27 10:36:11'),
+(16, 1, 4, 16, '2016-05-27 10:37:14');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `logs`
+--
+
+CREATE TABLE IF NOT EXISTS `logs` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `balconista_id` int(11) NOT NULL,
+  `accao` varchar(255) NOT NULL,
+  `data` date NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `balconista_id` (`balconista_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -127,7 +148,7 @@ CREATE TABLE IF NOT EXISTS `mesa` (
 --
 
 INSERT INTO `mesa` (`id`, `numero`, `mesalivre`, `activa`) VALUES
-(1, 1, 1, 1),
+(1, 1, 0, 1),
 (2, 2, 1, 1),
 (3, 3, 1, 1),
 (4, 4, 1, 1);
@@ -148,7 +169,7 @@ CREATE TABLE IF NOT EXISTS `pedido` (
   KEY `balconista` (`balconista_id`,`mesa_id`),
   KEY `balconista_id` (`balconista_id`),
   KEY `mesa_id` (`mesa_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=17 ;
 
 --
 -- Extraindo dados da tabela `pedido`
@@ -158,7 +179,16 @@ INSERT INTO `pedido` (`id`, `balconista_id`, `mesa_id`, `pago`, `data`) VALUES
 (3, 1, 1, 1, '2016-05-25 20:57:16'),
 (4, 1, 1, 1, '2016-05-25 20:57:16'),
 (5, 1, 1, 1, '2016-05-24 21:09:53'),
-(6, 1, 1, 1, '2016-05-26 11:34:41');
+(6, 1, 1, 1, '2016-05-26 11:34:41'),
+(8, 1, 1, 1, '2016-05-26 19:08:37'),
+(9, 1, 1, 1, '2016-05-26 19:08:37'),
+(10, 1, 1, 1, '2016-05-26 19:11:40'),
+(11, 1, 1, 1, '2016-05-26 19:21:20'),
+(12, 1, 1, 0, '2016-05-27 10:35:44'),
+(13, 1, 1, 0, '2016-05-27 10:35:55'),
+(14, 1, 1, 0, '2016-05-27 10:36:13'),
+(15, 1, 1, 0, '2016-05-27 10:37:08'),
+(16, 1, 1, 0, '2016-05-27 10:37:24');
 
 -- --------------------------------------------------------
 
@@ -225,11 +255,17 @@ ALTER TABLE `item_pedido`
   ADD CONSTRAINT `item_pedido_ibfk_2` FOREIGN KEY (`pedido_id`) REFERENCES `pedido` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
+-- Limitadores para a tabela `logs`
+--
+ALTER TABLE `logs`
+  ADD CONSTRAINT `logs_ibfk_1` FOREIGN KEY (`balconista_id`) REFERENCES `balconista` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
 -- Limitadores para a tabela `pedido`
 --
 ALTER TABLE `pedido`
-  ADD CONSTRAINT `pedido_ibfk_1` FOREIGN KEY (`balconista_id`) REFERENCES `balconista` (`id`),
-  ADD CONSTRAINT `pedido_ibfk_2` FOREIGN KEY (`mesa_id`) REFERENCES `mesa` (`id`);
+  ADD CONSTRAINT `pedido_ibfk_2` FOREIGN KEY (`mesa_id`) REFERENCES `mesa` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `pedido_ibfk_1` FOREIGN KEY (`balconista_id`) REFERENCES `balconista` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

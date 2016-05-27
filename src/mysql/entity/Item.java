@@ -1,5 +1,5 @@
 package mysql.entity;
-// Generated May 24, 2016 4:04:14 PM by Hibernate Tools 3.6.0
+// Generated May 27, 2016 1:50:42 PM by Hibernate Tools 3.6.0
 
 
 import java.util.HashSet;

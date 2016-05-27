@@ -2,11 +2,12 @@
 <!DOCTYPE hibernate-reverse-engineering PUBLIC "-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-reverse-engineering-3.0.dtd">
 <hibernate-reverse-engineering>
   <schema-selection match-catalog="snackbar"/>
-  <table-filter match-name="tipoitem"/>
-  <table-filter match-name="balconista"/>
-  <table-filter match-name="item_pedido"/>
-  <table-filter match-name="mesa"/>
-  <table-filter match-name="pedido"/>
   <table-filter match-name="item"/>
+  <table-filter match-name="pedido"/>
+  <table-filter match-name="mesa"/>
+  <table-filter match-name="item_pedido"/>
+  <table-filter match-name="balconista"/>
   <table-filter match-name="tipousuario"/>
+  <table-filter match-name="logs"/>
+  <table-filter match-name="tipoitem"/>
 </hibernate-reverse-engineering>
