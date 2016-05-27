@@ -187,6 +187,29 @@ public class Listas {
         return nrPedidos;
     }
     
+    public Double facturamentoSemanal(int diaSemana){ //Resolver bug de retorno
+        Double facturamento=0.0;
+        Calendar cal1 = Calendar.getInstance();
+        Calendar cal2 = Calendar.getInstance();
+        boolean sameDay = cal1.get(Calendar.YEAR) == cal2.get(Calendar.YEAR) &&
+                  cal1.get(Calendar.DAY_OF_YEAR) == cal2.get(Calendar.DAY_OF_YEAR);
+        
+        Date refDate = new Date();
+        Date[] days = getDaysOfWeek(refDate, Calendar.getInstance().getFirstDayOfWeek());
+        ArrayList<ItemPedido> pedidos = listaItensPedidos();
+        
+        for(ItemPedido p:pedidos)
+            if(p.getPedido().isPago()){
+            cal1.setTime(p.getPedido().getData());
+            cal2.setTime(days[diaSemana]);
+            if(cal1.get(Calendar.YEAR) == cal2.get(Calendar.YEAR) && cal1.get(Calendar.DAY_OF_YEAR) == cal2.get(Calendar.DAY_OF_YEAR))
+                facturamento+=p.getItem().getPreco()*p.getQtd(); //Bug to solve
+            }
+        System.out.println(days[diaSemana]+" "+facturamento+" facturado");
+        
+        return facturamento;
+    }
+    
      public int nrPratosVendidosSemana(int diaSemana){
         int nrPedidos=0;
         Calendar cal1 = Calendar.getInstance();
@@ -254,6 +277,29 @@ public class Listas {
         System.out.println(days[diaMes]+" "+nrPedidos+" pedidos feitos");
         
         return nrPedidos;
+    }
+    
+    public Double facturamentoMensal(int diaMes){ //Resolver bug de retorno
+        Double facturamento=0.0;
+        Calendar cal1 = Calendar.getInstance();
+        Calendar cal2 = Calendar.getInstance();
+        boolean sameDay = cal1.get(Calendar.YEAR) == cal2.get(Calendar.YEAR) &&
+                  cal1.get(Calendar.DAY_OF_YEAR) == cal2.get(Calendar.DAY_OF_YEAR);
+        
+        Date refDate = new Date();
+        Date[] days = getDaysOfMonth(refDate);
+        ArrayList<ItemPedido> pedidos = listaItensPedidos();
+        
+        for(ItemPedido p:pedidos)
+            if(p.getPedido().isPago()){
+            cal1.setTime(p.getPedido().getData());
+            cal2.setTime(days[diaMes]);
+            if(cal1.get(Calendar.YEAR) == cal2.get(Calendar.YEAR) && cal1.get(Calendar.DAY_OF_YEAR) == cal2.get(Calendar.DAY_OF_YEAR))
+                facturamento+=(p.getItem().getPreco()*p.getQtd()); //Bug de retorno
+        }
+        System.out.println(days[diaMes]+" "+facturamento+" facturado");
+        
+        return facturamento;
     }
     
        public int nrPratosVendidosMes(int diaMes){

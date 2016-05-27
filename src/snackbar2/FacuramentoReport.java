@@ -6,6 +6,8 @@
 package snackbar2;
 
 import java.awt.Color;
+import java.util.Date;
+import mysql.util.Listas;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartFrame;
 import org.jfree.chart.JFreeChart;
@@ -18,7 +20,7 @@ import org.jfree.data.category.DefaultCategoryDataset;
  * @author OsvaldoMaria
  */
 public class FacuramentoReport extends javax.swing.JFrame {
-
+    Listas listas= new Listas();
     /**
      * Creates new form Facuramento
      */
@@ -210,7 +212,7 @@ public class FacuramentoReport extends javax.swing.JFrame {
         //se seleccionar semana
         if(jComboBox1.getSelectedIndex()==1){
             for (int i = 0; i < 7; i++) {
-                dataset.setValue(50+i, "Valor" ,dias_semana[i]);
+                dataset.setValue(listas.facturamentoSemanal(i), "Valor" ,dias_semana[i]);
 
             }
             x="semana";
@@ -218,8 +220,8 @@ public class FacuramentoReport extends javax.swing.JFrame {
         }
         //se seleccionar mes
         else if(jComboBox1.getSelectedIndex()==2){
-            for (int i = 0; i < 31; i++) {
-                dataset.setValue(50 + i, "Valor", dias[i]);
+            for (int i = 0; i < listas.nrDaysOfMonth(new Date()); i++) {
+                dataset.setValue(listas.facturamentoMensal(i), "Valor",i+1);
 
             }
             x="diss";
