@@ -330,7 +330,7 @@ public class PrincipalFrame extends javax.swing.JFrame {
                 .addGap(43, 43, 43))
         );
 
-        jTabbedPane6.addTab("Listar de Pedidos", jPanel2);
+        jTabbedPane6.addTab("Lista de Pedidos", jPanel2);
 
         itensPagamentoTB.setModel(mcrud.itensMesa(listas.listaMesas().get(0)));
         jScrollPane3.setViewportView(itensPagamentoTB);
@@ -489,6 +489,7 @@ public class PrincipalFrame extends javax.swing.JFrame {
         mesasPagamentoCB.setModel(new DefaultComboBoxModel(listas.vectorMesasOcupadas()));
         mesaLivreCB.setModel(new DefaultComboBoxModel(listas.vectorMesasLivres()));
         mesaOcupadaCB.setModel(new DefaultComboBoxModel(listas.vectorMesasOcupadas()));
+        itensPedidos.clear();
         }
         }catch(Exception e){
             JOptionPane.showMessageDialog(null,e.getMessage());
@@ -548,7 +549,7 @@ public class PrincipalFrame extends javax.swing.JFrame {
     private void desfazerBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_desfazerBTActionPerformed
         // TODO add your handling code here:
         //Desfazer a ultima lista de de itens a um pedido
-        itensPedidos.clear();
+        itensPedidos.remove(itensPedidos.size()-1);
         pedidosTB.setModel(listaPedidos());
     }//GEN-LAST:event_desfazerBTActionPerformed
 
@@ -571,6 +572,7 @@ public class PrincipalFrame extends javax.swing.JFrame {
         mesasPagamentoCB.setModel(new DefaultComboBoxModel(listas.vectorMesasOcupadas()));
         mesaLivreCB.setModel(new DefaultComboBoxModel(listas.vectorMesasLivres()));
         mesaOcupadaCB.setModel(new DefaultComboBoxModel(listas.vectorMesasOcupadas()));
+        itensPedidos.clear();
         }
         }catch(Exception e){
             JOptionPane.showMessageDialog(null,e.getMessage());
