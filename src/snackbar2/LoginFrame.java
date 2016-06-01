@@ -141,15 +141,16 @@ public class LoginFrame extends javax.swing.JFrame {
 
     private void entrarBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_entrarBTActionPerformed
         // TODO add your handling code here:
+       boolean cond = true;
         try{
             for(Balconista b:listas.listaBalconista())
                 if(b.getUsername().equals(nomeUsuarioTF.getText()) && b.getPassword().equals(senhaPF.getText())){
                     new PrincipalFrame(b).setVisible(true);
                     setVisible(false);
-                    return;
-                }else{
+                    cond=false;
+                }
+             if(cond){
                     JOptionPane.showMessageDialog(rootPane, "Nome de Usuario ou Senha Incorrectos", "Erro", JOptionPane.WARNING_MESSAGE);
-                    return;
                 }
         }catch(Exception e){
             JOptionPane.showMessageDialog(rootPane, e.getMessage());

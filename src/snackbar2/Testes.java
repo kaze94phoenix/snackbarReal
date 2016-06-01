@@ -58,6 +58,9 @@ public class Testes {
             System.out.println(day + " " + nrPedidos + " pedidos feitos");
             nrPedidos = 0;
         }
+        for(int i=0; i<days.length; i++)
+            System.out.println(listas.facturamentoSemanal(i));
+        
         for(Date d: getDaysOfMonth(refDate)){
             System.out.println(d);
         }
