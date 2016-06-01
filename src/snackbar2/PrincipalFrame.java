@@ -443,8 +443,18 @@ public class PrincipalFrame extends javax.swing.JFrame {
         });
 
         bebidasVendidasBT.setText("Bebidas Vendidas");
+        bebidasVendidasBT.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bebidasVendidasBTActionPerformed(evt);
+            }
+        });
 
         facturamentoBT.setText("Facturamento");
+        facturamentoBT.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                facturamentoBTActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -664,6 +674,16 @@ public class PrincipalFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         new PratoReport().setVisible(true);
     }//GEN-LAST:event_pratosVendidosBTActionPerformed
+
+    private void bebidasVendidasBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bebidasVendidasBTActionPerformed
+        // TODO add your handling code here:
+        new BebidaReport().setVisible(true);
+    }//GEN-LAST:event_bebidasVendidasBTActionPerformed
+
+    private void facturamentoBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_facturamentoBTActionPerformed
+        // TODO add your handling code here:
+        new FacturamentoReport().setVisible(true);
+    }//GEN-LAST:event_facturamentoBTActionPerformed
 
     /**
      * @param args the command line arguments

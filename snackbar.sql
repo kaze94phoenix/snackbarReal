@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 27-Maio-2016 às 13:53
+-- Generation Time: 01-Jun-2016 às 14:32
 -- Versão do servidor: 5.6.17
 -- PHP Version: 5.5.12
 
@@ -47,7 +47,7 @@ CREATE TABLE IF NOT EXISTS `balconista` (
 
 INSERT INTO `balconista` (`id`, `nome`, `data_nascimento`, `morada`, `nuit`, `username`, `password`, `tipousuario_id`, `activo`) VALUES
 (1, 'Celso', '2016-05-05', 'MAgoanine', 554646, 'user1', 'password1', 1, 1),
-(2, 'Osvaldo', '2016-05-05', 'Polana cimento', 546468, 'user2', 'password2', 1, 1),
+(2, 'Osvaldo', '2016-05-05', 'Polana cimento', 546468, 'user2', 'password2', 2, 1),
 (8, 'Frenque', '2016-05-11', 'asdasd', 5464, 'user3', 'password3', 1, 0);
 
 -- --------------------------------------------------------
@@ -148,7 +148,7 @@ CREATE TABLE IF NOT EXISTS `mesa` (
 --
 
 INSERT INTO `mesa` (`id`, `numero`, `mesalivre`, `activa`) VALUES
-(1, 1, 0, 1),
+(1, 1, 1, 1),
 (2, 2, 1, 1),
 (3, 3, 1, 1),
 (4, 4, 1, 1);
@@ -184,11 +184,11 @@ INSERT INTO `pedido` (`id`, `balconista_id`, `mesa_id`, `pago`, `data`) VALUES
 (9, 1, 1, 1, '2016-05-26 19:08:37'),
 (10, 1, 1, 1, '2016-05-26 19:11:40'),
 (11, 1, 1, 1, '2016-05-26 19:21:20'),
-(12, 1, 1, 0, '2016-05-27 10:35:44'),
-(13, 1, 1, 0, '2016-05-27 10:35:55'),
-(14, 1, 1, 0, '2016-05-27 10:36:13'),
-(15, 1, 1, 0, '2016-05-27 10:37:08'),
-(16, 1, 1, 0, '2016-05-27 10:37:24');
+(12, 1, 1, 1, '2016-05-31 15:06:19'),
+(13, 1, 1, 1, '2016-05-31 15:06:19'),
+(14, 1, 1, 1, '2016-05-31 15:06:19'),
+(15, 1, 1, 1, '2016-05-31 15:06:19'),
+(16, 1, 1, 1, '2016-05-31 15:06:19');
 
 -- --------------------------------------------------------
 
@@ -264,8 +264,8 @@ ALTER TABLE `logs`
 -- Limitadores para a tabela `pedido`
 --
 ALTER TABLE `pedido`
-  ADD CONSTRAINT `pedido_ibfk_2` FOREIGN KEY (`mesa_id`) REFERENCES `mesa` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `pedido_ibfk_1` FOREIGN KEY (`balconista_id`) REFERENCES `balconista` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `pedido_ibfk_1` FOREIGN KEY (`balconista_id`) REFERENCES `balconista` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `pedido_ibfk_2` FOREIGN KEY (`mesa_id`) REFERENCES `mesa` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

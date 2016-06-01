@@ -653,11 +653,17 @@
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Bebidas Vendidas"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bebidasVendidasBTActionPerformed"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JButton" name="facturamentoBT">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Facturamento"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="facturamentoBTActionPerformed"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>

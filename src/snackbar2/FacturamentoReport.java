@@ -19,12 +19,12 @@ import org.jfree.data.category.DefaultCategoryDataset;
  *
  * @author OsvaldoMaria
  */
-public class FacuramentoReport extends javax.swing.JFrame {
+public class FacturamentoReport extends javax.swing.JFrame {
     Listas listas= new Listas();
     /**
      * Creates new form Facuramento
      */
-    public FacuramentoReport() {
+    public FacturamentoReport() {
         initComponents();
     }
 
@@ -270,13 +270,13 @@ public class FacuramentoReport extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FacuramentoReport.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FacturamentoReport.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FacuramentoReport.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FacturamentoReport.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FacuramentoReport.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FacturamentoReport.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FacuramentoReport.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FacturamentoReport.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         //</editor-fold>
@@ -284,7 +284,7 @@ public class FacuramentoReport extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new FacuramentoReport().setVisible(true);
+                new FacturamentoReport().setVisible(true);
             }
         });
     }
