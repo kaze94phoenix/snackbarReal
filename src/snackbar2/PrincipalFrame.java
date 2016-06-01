@@ -103,6 +103,7 @@ public class PrincipalFrame extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
+        sairMI = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -515,6 +516,15 @@ public class PrincipalFrame extends javax.swing.JFrame {
         mainPN.addTab("Gestão", gestaoPN);
 
         jMenu1.setText("Ficheiro");
+
+        sairMI.setText("Sair");
+        sairMI.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sairMIActionPerformed(evt);
+            }
+        });
+        jMenu1.add(sairMI);
+
         jMenuBar1.add(jMenu1);
 
         jMenu2.setText("Ajuda");
@@ -685,15 +695,24 @@ public class PrincipalFrame extends javax.swing.JFrame {
         new FacturamentoReport().setVisible(true);
     }//GEN-LAST:event_facturamentoBTActionPerformed
 
+    private void sairMIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sairMIActionPerformed
+        // TODO add your handling code here:
+        setVisible(false);
+        new LoginFrame().setVisible(true);
+    }//GEN-LAST:event_sairMIActionPerformed
+
     /**
      * @param args the command line arguments
      */
+    
+   
+   
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
+        * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
+        */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -767,6 +786,7 @@ public class PrincipalFrame extends javax.swing.JFrame {
     private javax.swing.JTable pedidosTB;
     private javax.swing.JButton pratosVendidosBT;
     private javax.swing.JTextField qtdTF;
+    private javax.swing.JMenuItem sairMI;
     private javax.swing.JComboBox tipoItemCB;
     private javax.swing.JTextField trocosTF;
     private javax.swing.JTextField valorPagarTF;

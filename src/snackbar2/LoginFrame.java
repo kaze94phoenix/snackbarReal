@@ -59,6 +59,11 @@ public class LoginFrame extends javax.swing.JFrame {
         });
 
         cancelarBT.setText("Cancelar");
+        cancelarBT.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelarBTActionPerformed(evt);
+            }
+        });
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Lock.png"))); // NOI18N
 
@@ -156,6 +161,11 @@ public class LoginFrame extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(rootPane, e.getMessage());
         }
     }//GEN-LAST:event_entrarBTActionPerformed
+
+    private void cancelarBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarBTActionPerformed
+        // TODO add your handling code here:
+        System.exit(0);
+    }//GEN-LAST:event_cancelarBTActionPerformed
 
     /**
      * @param args the command line arguments
