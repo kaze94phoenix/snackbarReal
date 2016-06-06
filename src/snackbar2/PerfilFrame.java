@@ -280,6 +280,7 @@ public class PerfilFrame extends javax.swing.JFrame {
             usernameTF.setEnabled(false);
             senhaPF.setEnabled(false);
             editarDUBT.setText("Editar");
+            JOptionPane.showMessageDialog(rootPane, "Alterado com sucesso");
         }
         //JOptionPane.showMessageDialog(null, "Inserido com sucesso");
         }catch(Exception e){
@@ -303,6 +304,7 @@ public class PerfilFrame extends javax.swing.JFrame {
 
     private void editarDPBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editarDPBTActionPerformed
         // TODO add your handling code here:
+        try{
         if(editarDPBT.getText().equalsIgnoreCase("Editar")){
             nomeTF.setEnabled(true);
             dataNascDC.setEnabled(true);
@@ -318,6 +320,10 @@ public class PerfilFrame extends javax.swing.JFrame {
             nuitTF.setEnabled(false);
             moradaTF.setEnabled(false);
             editarDPBT.setText("Editar");
+            JOptionPane.showMessageDialog(rootPane, "Alterado com sucesso");
+        }
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, e.getMessage());
         }
     }//GEN-LAST:event_editarDPBTActionPerformed
 
