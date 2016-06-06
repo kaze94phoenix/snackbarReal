@@ -35,14 +35,35 @@ public class MetodosCRUD {
         
     }
     
-    public void salvarUsuario(String name, String username, String password,Date dataNasc,int nuit, String morada, Tipousuario tipoUsuario){
+//    public void salvarUsuario(String name, String username, String password,Date dataNasc,int nuit, String morada, Tipousuario tipoUsuario){
+//        Balconista balconista = new Balconista();
+//        balconista.setNome(name);
+//        balconista.setMorada(morada);
+//        balconista.setNuit(nuit);
+//        balconista.setDataNascimento(dataNasc);
+//        balconista.setUsername(username);
+//        balconista.setPassword(password);
+//        balconista.setTipousuario(tipoUsuario);
+//        SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
+//        Session session = sessionFactory.openSession();
+//        session.beginTransaction();
+//        session.save(balconista);
+//        session.getTransaction().commit();
+//        balconista = (Balconista) session.get(Mesa.class, listas.listaBalconista().get(listas.listaBalconista().size()-1).getId());
+//        balconista.setUsername("user"+balconista.getId());
+//        balconista.setPassword("password"+balconista.getId());
+//        session.update(balconista);
+//        session.close();
+//    }
+    
+    public void salvarUsuario(String name,Date dataNasc,int nuit, String morada, Tipousuario tipoUsuario){
         Balconista balconista = new Balconista();
         balconista.setNome(name);
         balconista.setMorada(morada);
         balconista.setNuit(nuit);
         balconista.setDataNascimento(dataNasc);
-        balconista.setUsername(username);
-        balconista.setPassword(password);
+        balconista.setUsername("user"+(listas.listaBalconista().get(listas.listaBalconista().size()-1).getId()+1));
+        balconista.setPassword("password"+(listas.listaBalconista().get(listas.listaBalconista().size()-1).getId()+1));
         balconista.setTipousuario(tipoUsuario);
         SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
         Session session = sessionFactory.openSession();
