@@ -584,6 +584,7 @@ public class PrincipalFrame extends javax.swing.JFrame {
         mesasPagamentoCB.setModel(new DefaultComboBoxModel(listas.vectorMesasOcupadas()));
         mesaLivreCB.setModel(new DefaultComboBoxModel(listas.vectorMesasLivres()));
         mesaOcupadaCB.setModel(new DefaultComboBoxModel(listas.vectorMesasOcupadas()));
+        listaPedidosCB.setModel(new DefaultComboBoxModel(listas.vectorMesasOcupadas()));
         itensPedidos.clear();
         pedidosTB.setModel(listaPedidos());
         }
@@ -717,6 +718,13 @@ public class PrincipalFrame extends javax.swing.JFrame {
 
     private void listaPedidosCBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listaPedidosCBActionPerformed
         // TODO add your handling code here:
+        try{
+        listaPedidosTB.setModel(mcrud.itensMesa((Mesa) listaPedidosCB.getSelectedItem()));
+        mcrud.total=0.0;
+        listaPedidosTB.setModel(mcrud.itensMesa((Mesa) listaPedidosCB.getSelectedItem()));
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(rootPane, e.getMessage());
+        }
     }//GEN-LAST:event_listaPedidosCBActionPerformed
 
     /**
