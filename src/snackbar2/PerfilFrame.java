@@ -88,6 +88,7 @@ public class PerfilFrame extends javax.swing.JFrame {
         });
 
         cancelarDUBT.setText("Cancelar");
+        cancelarDUBT.setEnabled(false);
         cancelarDUBT.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cancelarDUBTActionPerformed(evt);
@@ -174,6 +175,12 @@ public class PerfilFrame extends javax.swing.JFrame {
         });
 
         cancelarDPBT.setText("Cancelar");
+        cancelarDPBT.setEnabled(false);
+        cancelarDPBT.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelarDPBTActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -262,8 +269,19 @@ public class PerfilFrame extends javax.swing.JFrame {
     private void editarDUBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editarDUBTActionPerformed
         // TODO add your handling code here:
         try{
-        
-        JOptionPane.showMessageDialog(null, "Inserido com sucesso");
+        if(editarDUBT.getText().equalsIgnoreCase("Editar")){
+            usernameTF.setEnabled(true);
+            senhaPF.setEnabled(true);
+            editarDUBT.setText("Gravar");
+            cancelarDUBT.setEnabled(true);
+        }
+        else{
+            mcrud.editarCredenciaisUsuario(usernameTF.getText(), senhaPF.getText(), user);
+            usernameTF.setEnabled(false);
+            senhaPF.setEnabled(false);
+            editarDUBT.setText("Editar");
+        }
+        //JOptionPane.showMessageDialog(null, "Inserido com sucesso");
         }catch(Exception e){
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
@@ -271,6 +289,12 @@ public class PerfilFrame extends javax.swing.JFrame {
 
     private void cancelarDUBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarDUBTActionPerformed
         // TODO add your handling code here:
+        nomeTF.setEnabled(false);
+            dataNascDC.setEnabled(false);
+            nuitTF.setEnabled(false);
+            moradaTF.setEnabled(false);
+            editarDUBT.setText("Editar");
+            cancelarDUBT.setEnabled(false);
     }//GEN-LAST:event_cancelarDUBTActionPerformed
 
     private void senhaPFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_senhaPFActionPerformed
@@ -279,7 +303,33 @@ public class PerfilFrame extends javax.swing.JFrame {
 
     private void editarDPBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editarDPBTActionPerformed
         // TODO add your handling code here:
+        if(editarDPBT.getText().equalsIgnoreCase("Editar")){
+            nomeTF.setEnabled(true);
+            dataNascDC.setEnabled(true);
+            nuitTF.setEnabled(true);
+            moradaTF.setEnabled(true);
+            cancelarDPBT.setEnabled(true);
+            editarDPBT.setText("Gravar");
+        }
+        else{
+            mcrud.editarDadosUsuario(nomeTF.getText(), dataNascDC.getDate(), Integer.parseInt(nuitTF.getText()), moradaTF.getText(), user);
+            nomeTF.setEnabled(false);
+            dataNascDC.setEnabled(false);
+            nuitTF.setEnabled(false);
+            moradaTF.setEnabled(false);
+            editarDPBT.setText("Editar");
+        }
     }//GEN-LAST:event_editarDPBTActionPerformed
+
+    private void cancelarDPBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarDPBTActionPerformed
+        // TODO add your handling code here:
+            nomeTF.setEnabled(false);
+            dataNascDC.setEnabled(false);
+            nuitTF.setEnabled(false);
+            moradaTF.setEnabled(false);
+            editarDPBT.setText("Editar");
+            cancelarDPBT.setEnabled(false);
+    }//GEN-LAST:event_cancelarDPBTActionPerformed
 
     @Override
     public void setDefaultCloseOperation(int operation) {

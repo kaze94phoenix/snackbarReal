@@ -14,6 +14,7 @@ import javax.swing.table.DefaultTableModel;
 import mysql.entity.Balconista;
 import mysql.entity.Item;
 import mysql.entity.ItemPedido;
+import mysql.entity.Logs;
 import mysql.entity.Mesa;
 import mysql.entity.Pedido;
 import mysql.entity.Tipoitem;
@@ -35,26 +36,32 @@ public class MetodosCRUD {
         
     }
     
-//    public void salvarUsuario(String name, String username, String password,Date dataNasc,int nuit, String morada, Tipousuario tipoUsuario){
-//        Balconista balconista = new Balconista();
-//        balconista.setNome(name);
-//        balconista.setMorada(morada);
-//        balconista.setNuit(nuit);
-//        balconista.setDataNascimento(dataNasc);
-//        balconista.setUsername(username);
-//        balconista.setPassword(password);
-//        balconista.setTipousuario(tipoUsuario);
-//        SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
-//        Session session = sessionFactory.openSession();
-//        session.beginTransaction();
-//        session.save(balconista);
-//        session.getTransaction().commit();
-//        balconista = (Balconista) session.get(Mesa.class, listas.listaBalconista().get(listas.listaBalconista().size()-1).getId());
-//        balconista.setUsername("user"+balconista.getId());
-//        balconista.setPassword("password"+balconista.getId());
-//        session.update(balconista);
-//        session.close();
-//    }
+    public void editarDadosUsuario(String name,Date dataNasc,int nuit, String morada, Balconista balconista){
+        SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
+        Session session = sessionFactory.openSession();
+        session.beginTransaction();
+        balconista.setNome(name);
+        balconista.setMorada(morada);
+        balconista.setNuit(nuit);
+        balconista.setDataNascimento(dataNasc);
+        session.update(balconista);
+        session.getTransaction().commit();
+        session.close();
+    }
+    
+    public void editarCredenciaisUsuario(String username,String password, Balconista balconista){
+        SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
+        Session session = sessionFactory.openSession();
+        session.beginTransaction();
+        balconista.setUsername(username);
+        balconista.setPassword(password);
+        session.update(balconista);
+        session.getTransaction().commit();
+        session.close();
+    }
+    
+    
+ 
     
     public void salvarUsuario(String name,Date dataNasc,int nuit, String morada, Tipousuario tipoUsuario){
         Balconista balconista = new Balconista();
@@ -69,6 +76,15 @@ public class MetodosCRUD {
         Session session = sessionFactory.openSession();
         session.beginTransaction();
         session.save(balconista);
+        session.getTransaction().commit();
+        session.close();
+    }
+    
+    public void salvarLogs(Logs log){
+        SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
+        Session session = sessionFactory.openSession();
+        session.beginTransaction();
+        session.save(log);
         session.getTransaction().commit();
         session.close();
     }
