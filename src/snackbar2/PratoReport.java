@@ -211,6 +211,10 @@ public class PratoReport extends javax.swing.JFrame {
         
         DefaultCategoryDataset dataset= new DefaultCategoryDataset();
         JFreeChart chart=null;
+        
+        if(jComboBox1.getSelectedIndex()==0){
+            new FacturamentoDiaPrato().setVisible(true);
+        }
         //se seleccionar semana
         if(jComboBox1.getSelectedIndex()==1){
                     for (int i = 0; i < 7; i++) {

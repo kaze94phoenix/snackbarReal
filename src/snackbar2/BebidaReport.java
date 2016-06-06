@@ -209,6 +209,10 @@ public class BebidaReport extends javax.swing.JFrame {
 
         DefaultCategoryDataset dataset= new DefaultCategoryDataset();
         JFreeChart chart=null;
+        //se seleccionar hoje
+        if(jComboBox1.getSelectedIndex()==0){
+            new FacturamentoDiaBebida();
+        }
         //se seleccionar semana
         if(jComboBox1.getSelectedIndex()==1){
             for (int i = 0; i < 7; i++) {

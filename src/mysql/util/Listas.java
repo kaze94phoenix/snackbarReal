@@ -84,8 +84,8 @@ public class Listas {
         return total;
     }
     
-    public Double totalPorUsuarioBebida(Balconista b){
-        Double total=0.0;
+    public int totalPorUsuarioBebida(Balconista b){
+        int total=0;
         Calendar cal1 = Calendar.getInstance();
         Calendar cal2 = Calendar.getInstance();
         cal1.setTime(new Date());
@@ -94,14 +94,14 @@ public class Listas {
             boolean sameDay = cal1.get(Calendar.YEAR) == cal2.get(Calendar.YEAR)
                 && cal1.get(Calendar.DAY_OF_YEAR) == cal2.get(Calendar.DAY_OF_YEAR);
             if(iP.getPedido().isPago() && iP.getPedido().getBalconista().getId()==b.getId()&& iP.getItem().getId()!=3&& sameDay)
-                total+=iP.getItem().getPreco();
+                total++;
             
     }
         return total;
     }
     
-    public Double totalPorUsuarioComida(Balconista b){
-        Double total=0.0;
+    public int totalPorUsuarioComida(Balconista b){
+        int total=0;
         Calendar cal1 = Calendar.getInstance();
         Calendar cal2 = Calendar.getInstance();
         cal1.setTime(new Date());
@@ -110,7 +110,7 @@ public class Listas {
             boolean sameDay = cal1.get(Calendar.YEAR) == cal2.get(Calendar.YEAR)
                 && cal1.get(Calendar.DAY_OF_YEAR) == cal2.get(Calendar.DAY_OF_YEAR);
             if(iP.getPedido().isPago() && iP.getPedido().getBalconista().getId()==b.getId()&& iP.getItem().getId()==3&& sameDay)
-                total+=iP.getItem().getPreco();
+                total++;
             
     }
         return total;
