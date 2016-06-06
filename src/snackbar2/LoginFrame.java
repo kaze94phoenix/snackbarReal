@@ -6,6 +6,7 @@
 
 package snackbar2;
 
+import java.util.Date;
 import javax.swing.JOptionPane;
 import mysql.entity.Balconista;
 import mysql.util.Listas;
@@ -151,6 +152,7 @@ public class LoginFrame extends javax.swing.JFrame {
             for(Balconista b:listas.listaBalconista())
                 if(b.getUsername().equals(nomeUsuarioTF.getText()) && b.getPassword().equals(senhaPF.getText())){
                     new PrincipalFrame(b).setVisible(true);
+                    mcrud.salvarLogs(b,"entrou",new Date());
                     setVisible(false);
                     cond=false;
                 }

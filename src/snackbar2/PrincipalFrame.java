@@ -706,6 +706,7 @@ public class PrincipalFrame extends javax.swing.JFrame {
     private void sairMIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sairMIActionPerformed
         // TODO add your handling code here:
         setVisible(false);
+        mcrud.salvarLogs(user,"saiu",new Date());
         new LoginFrame().setVisible(true);
     }//GEN-LAST:event_sairMIActionPerformed
 

@@ -13,6 +13,7 @@ import java.util.Vector;
 import mysql.entity.Balconista;
 import mysql.entity.Item;
 import mysql.entity.ItemPedido;
+import mysql.entity.Logs;
 import mysql.entity.Mesa;
 import mysql.entity.Pedido;
 import mysql.entity.Tipoitem;
@@ -150,6 +151,19 @@ public class Listas {
         session.getTransaction().commit();
         session.close();
         return mesas;    
+                }
+    
+    
+    public ArrayList<Logs> listaLogs(){
+        ArrayList<Logs> logs = new ArrayList<Logs>();
+        SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
+        Session session = sessionFactory.openSession();
+        session.beginTransaction();
+        Query query = session.createQuery("from Logs");
+        logs = (ArrayList) query.list();
+        session.getTransaction().commit();
+        //session.close();
+        return logs;    
                 }
     
     public ArrayList<Tipousuario> listaTipoUsuario(){

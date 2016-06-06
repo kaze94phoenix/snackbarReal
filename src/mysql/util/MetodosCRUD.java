@@ -80,7 +80,11 @@ public class MetodosCRUD {
         session.close();
     }
     
-    public void salvarLogs(Logs log){
+    public void salvarLogs(Balconista b, String a, Date d){
+        Logs log = new Logs();
+        log.setBalconista(b);
+        log.setAccao(a);
+        log.setData(d);
         SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
         Session session = sessionFactory.openSession();
         session.beginTransaction();
@@ -94,6 +98,14 @@ public class MetodosCRUD {
          dtm.setColumnIdentifiers(new Object[] {"ID","Nome","Username","NUIT"});
          for(Balconista balconista:listas.listaBalconista())
              dtm.addRow(new Object[]{" "+balconista.getId(),balconista.getNome(),balconista.getUsername(),balconista.getNuit()});
+        return dtm;
+    }
+    
+    public DefaultTableModel listarLogs(){
+        DefaultTableModel dtm = new DefaultTableModel();
+         dtm.setColumnIdentifiers(new Object[] {"ID","Nome","Accao","Momento"});
+         for(Logs log:listas.listaLogs())
+             dtm.addRow(new Object[]{" "+log.getId(),log.getBalconista().getNome(),log.getAccao(),log.getData()});
         return dtm;
     }
     

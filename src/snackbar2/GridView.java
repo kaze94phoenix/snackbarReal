@@ -10,18 +10,22 @@ package snackbar2;
  * @author OsvaldoMaria
  */
 import java.awt.*;
+import java.awt.event.*;
 import java.sql.*;
 import java.util.*;
 import javax.swing.*;
-import java.awt.event.*;
-import javax.swing.text.*;
 import javax.swing.event.*;
-import javax.swing.table.*;
 import javax.swing.plaf.basic.*;
+import javax.swing.table.*;
+import javax.swing.text.*;
+import mysql.entity.Logs;
 import mysql.entity.Mesa;
 import mysql.util.Listas;
+import mysql.util.MetodosCRUD;
 
 public class GridView extends JPanel {
+        MetodosCRUD mcrud = new MetodosCRUD();
+        Listas listas = new Listas();
 	RadioButtonUI ui = new RadioButtonUI();
 	int pageSize = 5;
 
@@ -212,17 +216,19 @@ class Model extends DefaultTableModel {
 	Model() {
 		
                 Listas l = new Listas();
-                ArrayList<Mesa> mesas=l.listaMesas();
+                ArrayList<Logs> logs=l.listaLogs();
                 JTable table = new JTable(this);
-		addColumn("Name");
-		addColumn("Address");
+		addColumn("Nome");
+		addColumn("Accao");
+                addColumn("Data");
                 
 
-            for (Iterator<Mesa> it = mesas.iterator(); it.hasNext();) {
-                Mesa m = it.next();
-                String name = m.getId().toString();
-                String address = String.valueOf(m.getNumero());
-                addRow(new Object[] { name, address });
+            for (Iterator<Logs> it = logs.iterator(); it.hasNext();) {
+                Logs lg = it.next();
+                String name = lg.getBalconista().getNome();
+                String action = lg.getAccao();
+                String data = lg.getData().toString();
+                addRow(new Object[] { name, action, data });
             }
 }
 }
