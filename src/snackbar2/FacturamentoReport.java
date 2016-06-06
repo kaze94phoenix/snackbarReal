@@ -210,6 +210,10 @@ public class FacturamentoReport extends javax.swing.JFrame {
         DefaultCategoryDataset dataset= new DefaultCategoryDataset();
         JFreeChart chart=null;
         //se seleccionar semana
+        if(jComboBox1.getSelectedIndex()==0){
+            new FacturamentoDia().setVisible(true);
+        }
+        
         if(jComboBox1.getSelectedIndex()==1){
             for (int i = 0; i < 7; i++) {
                 dataset.setValue(listas.facturamentoSemanal(i), "Valor" ,dias_semana[i]);

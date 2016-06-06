@@ -68,6 +68,54 @@ public class Listas {
         return itens;
     }
     
+    public Double totalPorUsuario(Balconista b){
+        Double total=0.0;
+        Calendar cal1 = Calendar.getInstance();
+        Calendar cal2 = Calendar.getInstance();
+        cal1.setTime(new Date());
+        for(ItemPedido iP: listaItensPedidos()){
+            cal2.setTime(iP.getPedido().getData());
+            boolean sameDay = cal1.get(Calendar.YEAR) == cal2.get(Calendar.YEAR)
+                && cal1.get(Calendar.DAY_OF_YEAR) == cal2.get(Calendar.DAY_OF_YEAR);
+            if(iP.getPedido().isPago() && iP.getPedido().getBalconista().getId()==b.getId()&& sameDay)
+                total+=iP.getItem().getPreco();
+            
+    }
+        return total;
+    }
+    
+    public Double totalPorUsuarioBebida(Balconista b){
+        Double total=0.0;
+        Calendar cal1 = Calendar.getInstance();
+        Calendar cal2 = Calendar.getInstance();
+        cal1.setTime(new Date());
+        for(ItemPedido iP: listaItensPedidos()){
+            cal2.setTime(iP.getPedido().getData());
+            boolean sameDay = cal1.get(Calendar.YEAR) == cal2.get(Calendar.YEAR)
+                && cal1.get(Calendar.DAY_OF_YEAR) == cal2.get(Calendar.DAY_OF_YEAR);
+            if(iP.getPedido().isPago() && iP.getPedido().getBalconista().getId()==b.getId()&& iP.getItem().getId()!=3&& sameDay)
+                total+=iP.getItem().getPreco();
+            
+    }
+        return total;
+    }
+    
+    public Double totalPorUsuarioComida(Balconista b){
+        Double total=0.0;
+        Calendar cal1 = Calendar.getInstance();
+        Calendar cal2 = Calendar.getInstance();
+        cal1.setTime(new Date());
+        for(ItemPedido iP: listaItensPedidos()){
+            cal2.setTime(iP.getPedido().getData());
+            boolean sameDay = cal1.get(Calendar.YEAR) == cal2.get(Calendar.YEAR)
+                && cal1.get(Calendar.DAY_OF_YEAR) == cal2.get(Calendar.DAY_OF_YEAR);
+            if(iP.getPedido().isPago() && iP.getPedido().getBalconista().getId()==b.getId()&& iP.getItem().getId()==3&& sameDay)
+                total+=iP.getItem().getPreco();
+            
+    }
+        return total;
+    }
+    
     public Vector<Tipousuario> vectorTipoUsuario(){
         Vector<Tipousuario> tipoUsuario = new Vector<Tipousuario>();
         for(Tipousuario aux: listaTipoUsuario())

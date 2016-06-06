@@ -70,6 +70,30 @@ public class MetodosCRUD {
         return dtm;
     }
     
+    public DefaultTableModel facturamentoDia(){
+        DefaultTableModel dtm = new DefaultTableModel();
+         dtm.setColumnIdentifiers(new Object[] {"Usuario","Facturamento"});
+         for(Balconista user:listas.listaBalconista())
+             dtm.addRow(new Object[]{" "+user.getNome(),listas.totalPorUsuario(user)});
+        return dtm;
+    }
+    
+    public DefaultTableModel facturamentoDiaComida(){
+        DefaultTableModel dtm = new DefaultTableModel();
+         dtm.setColumnIdentifiers(new Object[] {"Usuario","Facturamento"});
+         for(Balconista user:listas.listaBalconista())
+             dtm.addRow(new Object[]{" "+user.getNome(),listas.totalPorUsuarioComida(user)});
+        return dtm;
+    }
+    
+    public DefaultTableModel facturamentoDiaBebida(){
+        DefaultTableModel dtm = new DefaultTableModel();
+         dtm.setColumnIdentifiers(new Object[] {"Usuario","Facturamento"});
+         for(Balconista user:listas.listaBalconista())
+             dtm.addRow(new Object[]{" "+user.getNome(),listas.totalPorUsuarioBebida(user)});
+        return dtm;
+    }
+    
     
     public void salvarPedido(Balconista balconista,Mesa mesa,Date data){
         Pedido pedido = new Pedido(balconista,mesa,data);
