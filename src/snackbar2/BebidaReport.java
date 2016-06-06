@@ -7,6 +7,7 @@ package snackbar2;
 
 import java.awt.Color;
 import java.util.Date;
+import mysql.entity.Balconista;
 import mysql.util.Listas;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartFrame;
@@ -211,10 +212,14 @@ public class BebidaReport extends javax.swing.JFrame {
         JFreeChart chart=null;
         //se seleccionar hoje
         if(jComboBox1.getSelectedIndex()==0){
-            new FacturamentoDiaBebida();
+            for(Balconista b:listas.listaBalconista())
+            dataset.setValue(listas.totalPorUsuarioBebida(b), "Quantidade" ,b.getNome());
+            x="Balconista";
+            chart = ChartFactory.createBarChart("Total facturado durante o dia"+range, x,y, dataset,PlotOrientation.VERTICAL,false,true,false);
+            System.out.println("Dadosss"+dataset.getColumnCount());
         }
         //se seleccionar semana
-        if(jComboBox1.getSelectedIndex()==1){
+        else if(jComboBox1.getSelectedIndex()==1){
             for (int i = 0; i < 7; i++) {
                 dataset.setValue(listas.nrBebidasVendidosSemana(i), "Quantidade" ,dias_semana[i]);
 
