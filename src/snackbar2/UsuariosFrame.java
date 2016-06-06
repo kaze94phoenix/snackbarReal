@@ -251,6 +251,12 @@ public class UsuariosFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_limparBtActionPerformed
 
+    @Override
+    public void setDefaultCloseOperation(int operation) {
+        super.setDefaultCloseOperation(DISPOSE_ON_CLOSE); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    
     /**
      * @param args the command line arguments
      */

@@ -81,10 +81,10 @@ public class PrincipalFrame extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         pedidosTB = new javax.swing.JTable();
         listaPedidosPN = new javax.swing.JPanel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        listaPedisosSPN = new javax.swing.JScrollPane();
+        listaPedidosTB = new javax.swing.JTable();
         jPanel8 = new javax.swing.JPanel();
-        jComboBox4 = new javax.swing.JComboBox();
+        listaPedidosCB = new javax.swing.JComboBox();
         pagamentoPN = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         itensPagamentoTB = new javax.swing.JTable();
@@ -97,12 +97,13 @@ public class PrincipalFrame extends javax.swing.JFrame {
         trocosTF = new javax.swing.JTextField();
         gestaoPN = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
-        pratosVendidosBT = new javax.swing.JButton();
-        bebidasVendidasBT = new javax.swing.JButton();
-        facturamentoBT = new javax.swing.JButton();
+        reportsBT = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
+        usuariosBT = new javax.swing.JButton();
+        itensBT = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
+        perfilMI = new javax.swing.JMenuItem();
         sairMI = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
 
@@ -225,7 +226,7 @@ public class PrincipalFrame extends javax.swing.JFrame {
                         .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(mesaLivreCB, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel6))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 317, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 284, Short.MAX_VALUE)
                         .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel7)
                             .addComponent(mesaOcupadaCB, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))))
@@ -269,7 +270,7 @@ public class PrincipalFrame extends javax.swing.JFrame {
                 .addGroup(pedidosPNLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel7, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 567, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 534, Short.MAX_VALUE))
                 .addGap(14, 14, 14))
         );
         pedidosPNLayout.setVerticalGroup(
@@ -285,20 +286,15 @@ public class PrincipalFrame extends javax.swing.JFrame {
 
         mainPN.addTab("Pedidos", pedidosPN);
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jScrollPane2.setViewportView(jTable2);
+        listaPedidosTB.setModel(mcrud.itensMesa(listas.listaMesas().get(0)));
+        listaPedisosSPN.setViewportView(listaPedidosTB);
 
-        jComboBox4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        listaPedidosCB.setModel(new javax.swing.DefaultComboBoxModel(listas.vectorMesasOcupadas()));
+        listaPedidosCB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                listaPedidosCBActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
@@ -306,14 +302,14 @@ public class PrincipalFrame extends javax.swing.JFrame {
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel8Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jComboBox4, 0, 172, Short.MAX_VALUE)
+                .addComponent(listaPedidosCB, 0, 172, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel8Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(listaPedidosCB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(13, Short.MAX_VALUE))
         );
 
@@ -322,10 +318,10 @@ public class PrincipalFrame extends javax.swing.JFrame {
         listaPedidosPNLayout.setHorizontalGroup(
             listaPedidosPNLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, listaPedidosPNLayout.createSequentialGroup()
-                .addContainerGap(39, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(listaPedidosPNLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 542, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(listaPedisosSPN, javax.swing.GroupLayout.PREFERRED_SIZE, 542, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
         listaPedidosPNLayout.setVerticalGroup(
@@ -334,7 +330,7 @@ public class PrincipalFrame extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(listaPedisosSPN, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(43, 43, 43))
         );
 
@@ -398,7 +394,7 @@ public class PrincipalFrame extends javax.swing.JFrame {
                             .addComponent(jScrollPane3)
                             .addGroup(pagamentoPNLayout.createSequentialGroup()
                                 .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 389, Short.MAX_VALUE))))
+                                .addGap(0, 356, Short.MAX_VALUE))))
                     .addGroup(pagamentoPNLayout.createSequentialGroup()
                         .addGap(29, 29, 29)
                         .addGroup(pagamentoPNLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -434,26 +430,12 @@ public class PrincipalFrame extends javax.swing.JFrame {
 
         mainPN.addTab("Pagamento", pagamentoPN);
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Relatorios"));
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Negócio"));
 
-        pratosVendidosBT.setText("Pratos Vendidos");
-        pratosVendidosBT.addActionListener(new java.awt.event.ActionListener() {
+        reportsBT.setText("Relatorios");
+        reportsBT.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                pratosVendidosBTActionPerformed(evt);
-            }
-        });
-
-        bebidasVendidasBT.setText("Bebidas Vendidas");
-        bebidasVendidasBT.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bebidasVendidasBTActionPerformed(evt);
-            }
-        });
-
-        facturamentoBT.setText("Facturamento");
-        facturamentoBT.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                facturamentoBTActionPerformed(evt);
+                reportsBTActionPerformed(evt);
             }
         });
 
@@ -461,35 +443,53 @@ public class PrincipalFrame extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(93, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(facturamentoBT)
-                    .addComponent(bebidasVendidasBT)
-                    .addComponent(pratosVendidosBT))
-                .addGap(24, 24, 24))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(reportsBT)
+                .addGap(0, 120, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(35, 35, 35)
-                .addComponent(pratosVendidosBT)
-                .addGap(44, 44, 44)
-                .addComponent(bebidasVendidasBT)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
-                .addComponent(facturamentoBT)
-                .addGap(58, 58, 58))
+                .addContainerGap()
+                .addComponent(reportsBT)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Recursos"));
+
+        usuariosBT.setText("Usuarios");
+        usuariosBT.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                usuariosBTActionPerformed(evt);
+            }
+        });
+
+        itensBT.setText("Itens");
+        itensBT.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itensBTActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 247, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(usuariosBT)
+                    .addComponent(itensBT))
+                .addContainerGap(196, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(usuariosBT)
+                .addGap(38, 38, 38)
+                .addComponent(itensBT)
+                .addContainerGap(158, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout gestaoPNLayout = new javax.swing.GroupLayout(gestaoPN);
@@ -497,11 +497,11 @@ public class PrincipalFrame extends javax.swing.JFrame {
         gestaoPNLayout.setHorizontalGroup(
             gestaoPNLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, gestaoPNLayout.createSequentialGroup()
-                .addGap(28, 28, 28)
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addContainerGap(17, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(62, 62, 62))
+                .addGap(27, 27, 27)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         gestaoPNLayout.setVerticalGroup(
             gestaoPNLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -515,7 +515,15 @@ public class PrincipalFrame extends javax.swing.JFrame {
 
         mainPN.addTab("Gestão", gestaoPN);
 
-        jMenu1.setText("Ficheiro");
+        jMenu1.setText("Definições");
+
+        perfilMI.setText("Perfil");
+        perfilMI.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                perfilMIActionPerformed(evt);
+            }
+        });
+        jMenu1.add(perfilMI);
 
         sairMI.setText("Sair");
         sairMI.addActionListener(new java.awt.event.ActionListener() {
@@ -536,7 +544,7 @@ public class PrincipalFrame extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(mainPN)
+            .addComponent(mainPN, javax.swing.GroupLayout.PREFERRED_SIZE, 563, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -680,26 +688,34 @@ public class PrincipalFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_mesaOcupadaCBActionPerformed
 
-    private void pratosVendidosBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pratosVendidosBTActionPerformed
+    private void reportsBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reportsBTActionPerformed
         // TODO add your handling code here:
-        new PratoReport().setVisible(true);
-    }//GEN-LAST:event_pratosVendidosBTActionPerformed
+        new Reports().setVisible(true);
+    }//GEN-LAST:event_reportsBTActionPerformed
 
-    private void bebidasVendidasBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bebidasVendidasBTActionPerformed
+    private void usuariosBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usuariosBTActionPerformed
         // TODO add your handling code here:
-        new BebidaReport().setVisible(true);
-    }//GEN-LAST:event_bebidasVendidasBTActionPerformed
+        new UsuariosFrame().setVisible(true);
+    }//GEN-LAST:event_usuariosBTActionPerformed
 
-    private void facturamentoBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_facturamentoBTActionPerformed
+    private void itensBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itensBTActionPerformed
         // TODO add your handling code here:
-        new FacturamentoReport().setVisible(true);
-    }//GEN-LAST:event_facturamentoBTActionPerformed
+        new ItensFrame().setVisible(true);
+    }//GEN-LAST:event_itensBTActionPerformed
 
     private void sairMIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sairMIActionPerformed
         // TODO add your handling code here:
         setVisible(false);
         new LoginFrame().setVisible(true);
     }//GEN-LAST:event_sairMIActionPerformed
+
+    private void perfilMIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_perfilMIActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_perfilMIActionPerformed
+
+    private void listaPedidosCBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listaPedidosCBActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_listaPedidosCBActionPerformed
 
     /**
      * @param args the command line arguments
@@ -746,16 +762,14 @@ public class PrincipalFrame extends javax.swing.JFrame {
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton adicionarBT;
-    private javax.swing.JButton bebidasVendidasBT;
     private javax.swing.JButton confirmarMLBT;
     private javax.swing.JButton confirmarMOBT;
     private javax.swing.JButton desfazerBT;
-    private javax.swing.JButton facturamentoBT;
     private javax.swing.Box.Filler filler1;
     private javax.swing.JPanel gestaoPN;
     private javax.swing.JComboBox itemsCB;
+    private javax.swing.JButton itensBT;
     private javax.swing.JTable itensPagamentoTB;
-    private javax.swing.JComboBox jComboBox4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -772,10 +786,11 @@ public class PrincipalFrame extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTable jTable2;
+    private javax.swing.JComboBox listaPedidosCB;
     private javax.swing.JPanel listaPedidosPN;
+    private javax.swing.JTable listaPedidosTB;
+    private javax.swing.JScrollPane listaPedisosSPN;
     private javax.swing.JTabbedPane mainPN;
     private javax.swing.JComboBox mesaLivreCB;
     private javax.swing.JComboBox mesaOcupadaCB;
@@ -784,11 +799,13 @@ public class PrincipalFrame extends javax.swing.JFrame {
     private javax.swing.JButton pagarBT;
     private javax.swing.JPanel pedidosPN;
     private javax.swing.JTable pedidosTB;
-    private javax.swing.JButton pratosVendidosBT;
+    private javax.swing.JMenuItem perfilMI;
     private javax.swing.JTextField qtdTF;
+    private javax.swing.JButton reportsBT;
     private javax.swing.JMenuItem sairMI;
     private javax.swing.JComboBox tipoItemCB;
     private javax.swing.JTextField trocosTF;
+    private javax.swing.JButton usuariosBT;
     private javax.swing.JTextField valorPagarTF;
     // End of variables declaration//GEN-END:variables
 }
