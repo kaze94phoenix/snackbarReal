@@ -94,8 +94,8 @@ public class Listas {
             cal2.setTime(iP.getPedido().getData());
             boolean sameDay = cal1.get(Calendar.YEAR) == cal2.get(Calendar.YEAR)
                 && cal1.get(Calendar.DAY_OF_YEAR) == cal2.get(Calendar.DAY_OF_YEAR);
-            if(iP.getPedido().isPago() && iP.getPedido().getBalconista().getId()==b.getId()&& iP.getItem().getId()!=3&& sameDay)
-                total++;
+            if(iP.getPedido().isPago() && iP.getPedido().getBalconista().getId()==b.getId()&& iP.getItem().getTipoitem().getId()!=3&& sameDay)
+            total=total+iP.getQtd();
             
     }
         return total;
@@ -110,8 +110,8 @@ public class Listas {
             cal2.setTime(iP.getPedido().getData());
             boolean sameDay = cal1.get(Calendar.YEAR) == cal2.get(Calendar.YEAR)
                 && cal1.get(Calendar.DAY_OF_YEAR) == cal2.get(Calendar.DAY_OF_YEAR);
-            if(iP.getPedido().isPago() && iP.getPedido().getBalconista().getId()==b.getId()&& iP.getItem().getId()==3&& sameDay)
-                total++;
+            if(iP.getPedido().isPago() && iP.getPedido().getBalconista().getId()==b.getId()&& iP.getItem().getTipoitem().getId()==3&& sameDay)
+                total=total+iP.getQtd();
             
     }
         return total;
@@ -225,7 +225,7 @@ public class Listas {
         //session.close();
         return itensPedidos;
     }
-    
+    //semanal
     public int nrPedidosVendidosSemana(int diaSemana){
         int nrPedidos=0;
         Calendar cal1 = Calendar.getInstance();
@@ -242,7 +242,7 @@ public class Listas {
             cal1.setTime(p.getPedido().getData());
             cal2.setTime(days[diaSemana]);
             if(cal1.get(Calendar.YEAR) == cal2.get(Calendar.YEAR) && cal1.get(Calendar.DAY_OF_YEAR) == cal2.get(Calendar.DAY_OF_YEAR))
-                nrPedidos++;
+                nrPedidos=nrPedidos+p.getQtd();
         }
         System.out.println(days[diaSemana]+" "+nrPedidos+" pedidos feitos");
         
@@ -288,7 +288,7 @@ public class Listas {
             cal1.setTime(p.getPedido().getData());
             cal2.setTime(days[diaSemana]);
             if(cal1.get(Calendar.YEAR) == cal2.get(Calendar.YEAR) && cal1.get(Calendar.DAY_OF_YEAR) == cal2.get(Calendar.DAY_OF_YEAR))
-                nrPedidos++;
+                nrPedidos=nrPedidos+p.getQtd();
         }
         System.out.println(days[diaSemana]+" "+nrPedidos+" pedidos feitos");
         
@@ -311,13 +311,13 @@ public class Listas {
             cal1.setTime(p.getPedido().getData());
             cal2.setTime(days[diaSemana]);
             if(cal1.get(Calendar.YEAR) == cal2.get(Calendar.YEAR) && cal1.get(Calendar.DAY_OF_YEAR) == cal2.get(Calendar.DAY_OF_YEAR))
-                nrPedidos++;
+                nrPedidos=nrPedidos+p.getQtd();
         }
         System.out.println(days[diaSemana]+" "+nrPedidos+" pedidos feitos");
         
         return nrPedidos;
     } 
-    
+    //mensal
     public int nrPedidosVendidosMes(int diaMes){
         int nrPedidos=0;
         Calendar cal1 = Calendar.getInstance();
@@ -325,16 +325,17 @@ public class Listas {
         boolean sameDay = cal1.get(Calendar.YEAR) == cal2.get(Calendar.YEAR) &&
                   cal1.get(Calendar.DAY_OF_YEAR) == cal2.get(Calendar.DAY_OF_YEAR);
         
-        Date refDate = new Date();
-        Date[] days = getDaysOfMonth(refDate);
-        ArrayList<ItemPedido> pedidos = listaItensPedidos();
+        Date refDate = new Date(); //data corrente
+        Date[] days = getDaysOfMonth(refDate); //extraindo os dias do mes corrente
+        ArrayList<ItemPedido> pedidos = listaItensPedidos(); //adquirindo lista de todos os pedidos
         
         for(ItemPedido p:pedidos)
             if(p.getPedido().isPago()){
-            cal1.setTime(p.getPedido().getData());
-            cal2.setTime(days[diaMes]);
+            cal1.setTime(p.getPedido().getData()); //data de um pedido
+            cal2.setTime(days[diaMes]); //uma data do mes corrente
+            //verificando se o pedido foi feito numa data no mes corrente
             if(cal1.get(Calendar.YEAR) == cal2.get(Calendar.YEAR) && cal1.get(Calendar.DAY_OF_YEAR) == cal2.get(Calendar.DAY_OF_YEAR))
-                nrPedidos++;
+                nrPedidos=nrPedidos+p.getQtd();
         }
         System.out.println(days[diaMes]+" "+nrPedidos+" pedidos feitos");
         
@@ -377,10 +378,11 @@ public class Listas {
         
         for(ItemPedido p:pedidos)
             if(p.getPedido().isPago() && p.getItem().getTipoitem().getId()==3){
-            cal1.setTime(p.getPedido().getData());
-            cal2.setTime(days[diaMes]);
+            cal1.setTime(p.getPedido().getData()); //data de um pedido
+            cal2.setTime(days[diaMes]); //uma data do mes corrente
+            //verificando se o pedido foi feito numa data no mes corrente
             if(cal1.get(Calendar.YEAR) == cal2.get(Calendar.YEAR) && cal1.get(Calendar.DAY_OF_YEAR) == cal2.get(Calendar.DAY_OF_YEAR))
-                nrPedidos++;
+                nrPedidos=nrPedidos+p.getQtd();
         }
         System.out.println(days[diaMes]+" "+nrPedidos+" pedidos feitos");
         
@@ -403,14 +405,36 @@ public class Listas {
             cal1.setTime(p.getPedido().getData());
             cal2.setTime(days[diaMes]);
             if(cal1.get(Calendar.YEAR) == cal2.get(Calendar.YEAR) && cal1.get(Calendar.DAY_OF_YEAR) == cal2.get(Calendar.DAY_OF_YEAR))
-                nrPedidos++;
+                nrPedidos=nrPedidos+p.getQtd();
         }
         System.out.println(days[diaMes]+" "+nrPedidos+" pedidos feitos");
         
         return nrPedidos;
     }
+   
+          //anual
+   
+              public int nrBebidasVendidosAno(int mesAno){
+        int nrPedidos=0;
+        Calendar cal1 = Calendar.getInstance();
+        Calendar cal2 = Calendar.getInstance();
+        
+        Date refDate = new Date();
+        ArrayList<ItemPedido> pedidos = listaItensPedidos();
+        
+        for(ItemPedido p:pedidos)
+            if(p.getPedido().isPago() && p.getItem().getTipoitem().getId()!=3){
+            cal1.setTime(p.getPedido().getData());
+            cal2.setTime(refDate);
+            if(cal1.get(Calendar.YEAR) == cal2.get(Calendar.YEAR) && cal1.get(Calendar.MONTH) == mesAno)
+                nrPedidos=nrPedidos+p.getQtd();
+        }
+        
+        return nrPedidos;
+    }
+          
  
-    
+    //-------------------------------//
     private Date[] getDaysOfWeek(Date refDate, int firstDayOfWeek) {
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(refDate);

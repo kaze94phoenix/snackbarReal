@@ -215,7 +215,7 @@ public class PratoReport extends javax.swing.JFrame {
         
         if(jComboBox1.getSelectedIndex()==0){
             for(Balconista b:listas.listaBalconista())
-            dataset.setValue(listas.totalPorUsuarioBebida(b), "Quantidade" ,b.getNome());
+            dataset.setValue(listas.totalPorUsuarioComida(b), "Quantidade" ,b.getNome());
             x="Balconista";
             chart = ChartFactory.createBarChart("Total facturado durante o dia"+range, x,y, dataset,PlotOrientation.VERTICAL,false,true,false);
             System.out.println("Dadosss"+dataset.getColumnCount());

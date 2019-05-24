@@ -617,6 +617,7 @@ public class PrincipalFrame extends javax.swing.JFrame {
         mesasPagamentoCB.setModel(new DefaultComboBoxModel(listas.vectorMesasOcupadas()));
         mesaLivreCB.setModel(new DefaultComboBoxModel(listas.vectorMesasLivres()));
         mesaOcupadaCB.setModel(new DefaultComboBoxModel(listas.vectorMesasOcupadas()));
+        listaPedidosCB.setModel(new DefaultComboBoxModel(listas.vectorMesasOcupadas()));
          JOptionPane.showMessageDialog(rootPane, "Pago");
          }
         }catch(Exception e){
