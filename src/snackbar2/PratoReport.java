@@ -243,7 +243,7 @@ public class PratoReport extends javax.swing.JFrame {
         //seleccionar ano
         else if(jComboBox1.getSelectedIndex()==3){
             for (int i = 0; i < 12; i++) {
-                dataset.setValue(50 + i, "Quantidade", meses[i]);
+                dataset.setValue(listas.nrPratosVendidosAno(i), "Quantidade", meses[i]);
 
             }
             x="ano";

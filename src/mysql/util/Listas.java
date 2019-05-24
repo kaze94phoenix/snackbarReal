@@ -413,6 +413,25 @@ public class Listas {
     }
    
           //anual
+          
+          public int nrPratosVendidosAno(int mesAno){
+        int nrPedidos=0;
+        Calendar cal1 = Calendar.getInstance();
+        Calendar cal2 = Calendar.getInstance();
+        
+        Date refDate = new Date();
+        ArrayList<ItemPedido> pedidos = listaItensPedidos();
+        
+        for(ItemPedido p:pedidos)
+            if(p.getPedido().isPago() && p.getItem().getTipoitem().getId()==3){
+            cal1.setTime(p.getPedido().getData());
+            cal2.setTime(refDate);
+            if(cal1.get(Calendar.YEAR) == cal2.get(Calendar.YEAR) && cal1.get(Calendar.MONTH) == mesAno)
+                nrPedidos=nrPedidos+p.getQtd();
+        }
+        
+        return nrPedidos;
+    }
    
               public int nrBebidasVendidosAno(int mesAno){
         int nrPedidos=0;
